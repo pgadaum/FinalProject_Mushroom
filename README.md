@@ -2,7 +2,6 @@
 ![](UTA-DataScience-Logo.png)
 
 
-## One Sentence Summary
 This repository contains an end-to-end pipeline to classify mushrooms as edible or poisonous using data from the [Mushroom Classification Kaggle Dataset](https://www.kaggle.com/datasets/uciml/mushroom-classification).
 
 ---
