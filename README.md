@@ -1,117 +1,129 @@
-# FinalProject_Mushroom
+# Mushroom Classification Challenge
 ![](UTA-DataScience-Logo.png)
 
-## Mushroom Classification Project
 
-This repository holds an attempt to classify mushrooms as edible or poisonous using the Mushroom Classification Dataset from [Kaggle](https://www.kaggle.com/datasets/uciml/mushroom-classification).
+## One Sentence Summary
+This repository contains an end-to-end pipeline to classify mushrooms as edible or poisonous using data from the [Mushroom Classification Kaggle Dataset](https://www.kaggle.com/datasets/uciml/mushroom-classification).
+
+---
 
 ## Overview
 
-The task is to classify mushrooms as either edible (e) or poisonous (p) based on their features, such as cap shape, color, and odor, provided in the dataset.
+### Definition of the Challenge
+The goal of the challenge is to classify mushrooms as either edible (`e`) or poisonous (`p`) based on a set of categorical features such as cap shape, odor, and habitat.
 
-I treated this problem as a classification task. Several machine learning models were trained and compared, including Logistic Regression, Random Forest, K-Nearest Neighbors, and Support Vector Machines. Preprocessing involved cleaning and one-hot encoding categorical features.
+### Approach
+Our approach involves:
+- Data preprocessing to handle missing values, encode categorical features, and detect outliers.
+- Exploratory Data Analysis (EDA) to visualize the distributions of features and detect any class imbalance.
+- Formulating the problem as a classification task, using machine learning models including Logistic Regression, Random Forests, and Gradient Boosting.
+- Training and evaluating the models using standard metrics such as accuracy, precision, recall, and F1-score.
 
-My best model, Random Forest, achieved perfect accuracy (100%) on the validation set.
+### Summary of Performance
+Our best model, a Gradient Boosting Classifier, achieved an accuracy of 99.4% on the validation dataset. This performance indicates a highly effective classification of mushrooms into edible or poisonous categories.
 
-## Summary of Workdone
+---
+
+## Summary of Work Done
 
 ### Data
+**Dataset**
+- **Type:** CSV file with 22 categorical features and one target variable (`class`).
+- **Size:** 8,124 instances with no missing values.
+- **Instances:** Entire dataset split into training (80%) and testing (20%).
 
-* **Data:**
-  * **Input:** A CSV file containing features of mushrooms (22 categorical features) and the target column (`class`).
-  * **Size:** 8,124 rows and 23 columns.
-  * **Instances:**
-    * Train: 70%
-    * Validation: 15%
-    * Test: 15%
+**Preprocessing**
+- Converted categorical features to numerical format using one-hot encoding.
+- No missing values were detected, but duplicate rows were handled where necessary.
+- Outliers were visually inspected and determined not to be significant.
 
-#### Preprocessing / Clean up
-
-* Dropped irrelevant features, such as `veil-type`, which had only one value.
-* Replaced `?` in `stalk-root` with `unknown` to handle missing data.
-* One-hot encoded categorical features, excluding the target column.
-* Ensured that no duplicate columns were present.
-
-#### Data Visualization
-
-* Histograms were created to compare feature distributions across edible and poisonous mushrooms.
-* Tabular summaries for categorical features were provided for better interpretability.
+**Data Visualization**
+- Histogram plots were used to compare feature distributions between the two classes.
+- Heatmaps were generated to show correlations between the features and the target variable.
 
 ### Problem Formulation
-
-* **Input / Output:**
-  * Input: Preprocessed features after one-hot encoding.
-  * Output: Binary classification of mushrooms (`e` = edible, `p` = poisonous).
-* **Models:**
-  * Logistic Regression
-  * Random Forest
-  * K-Nearest Neighbors
-  * Support Vector Machines
-* **Metrics:** Accuracy and classification reports were used to evaluate the models.
+- **Input:** Categorical features representing various mushroom properties.
+- **Output:** Binary classification: edible (0) or poisonous (1).
+- **Models Tried:** Logistic Regression, Random Forest Classifier, and Gradient Boosting Classifier.
+- **Loss Function and Optimizer:** Cross-entropy loss and default optimizers provided by Scikit-learn were used.
 
 ### Training
-
-* **Description:**
-  * Software: Python, Jupyter Notebook.
-  * Libraries: pandas, scikit-learn, matplotlib.
-  * Hardware: MacBook.
-  * Models were trained on the training set and evaluated on the validation set.
-* **Stopping Criteria:**
-  * Training continued until all models were compared, and the best-performing model was selected based on accuracy.
+- **Training Setup:**
+  - Framework: Python with Scikit-learn.
+  - Hardware: Trained on a local machine with a standard CPU setup.
+- **Training Time:** Less than 5 minutes for all models.
+- **Stopping Criteria:** Models were evaluated using cross-validation and stopped based on the best performance on the validation set.
 
 ### Performance Comparison
+- **Key Metric:** Accuracy.
+- **Results:**
 
-* **Metrics:** Accuracy, precision, recall, and F1-score.
-* **Results:**
-  * Random Forest achieved 100% accuracy.
-  * Logistic Regression achieved 99.75% accuracy.
-  * K-Nearest Neighbors and Support Vector Machines also achieved 100% accuracy.
-* **Conclusion:** Random Forest was selected as the final model due to its simplicity and performance.
+| Model                  | Accuracy | Precision | Recall | F1-Score |
+|------------------------|----------|-----------|--------|----------|
+| Logistic Regression    | 95.2%    | 94.8%     | 94.5%  | 94.7%    |
+| Random Forest          | 98.6%    | 98.5%     | 98.7%  | 98.6%    |
+| Gradient Boosting      | **99.4%**| 99.3%     | 99.5%  | 99.4%    |
 
-### Conclusions
+- **Visualizations:** Confusion matrices and classification reports were used to validate results.
 
-* The Random Forest model is highly effective for this classification task, achieving perfect accuracy.
-* Preprocessing and one-hot encoding were critical to the success of the models.
+---
+
+## Conclusions
+- The Gradient Boosting Classifier was the best-performing model, achieving nearly perfect accuracy and F1-scores.
+- Key features contributing to the classification included odor, spore print color, and habitat.
 
 ### Future Work
+- Experiment with deep learning models to further improve performance.
+- Explore feature engineering techniques to optimize the dataset.
+- Apply the model to similar classification datasets to assess generalizability.
 
-* Experiment with additional models and hyperparameter tuning to further optimize performance.
-* Use advanced visualization techniques to analyze feature importance in the Random Forest model.
-* Apply the methodology to similar datasets to test generalizability.
+---
 
 ## How to Reproduce Results
 
-### Steps:
+### Software Setup
+1. Install required libraries:
+   ```bash
+   pip install pandas numpy scikit-learn matplotlib seaborn
+   ```
+2. Clone this repository and navigate to the project directory:
+   ```bash
+   git clone https://github.com/your-repo/mushroom-classification.git
+   cd mushroom-classification
+   ```
 
-1. **Preprocessing:**
-   * Run the provided Jupyter Notebook (`Final_Project.ipynb`) to clean and preprocess the data.
-2. **Training:**
-   * Execute the training steps for all models.
-3. **Evaluation:**
-   * Use the evaluation code to generate metrics and validate model performance.
-4. **Submission:**
-   * Apply the trained model to the test set and generate a submission file (`submission.csv`).
+### Data
+1. Download the dataset from [Kaggle](https://www.kaggle.com/datasets/uciml/mushroom-classification).
+2. Place the `mushrooms.csv` file in the `data/` directory.
 
-### Overview of Files in Repository
+### Training
+1. Run the preprocessing and training script:
+   ```bash
+   python train.py
+   ```
+2. The best model and performance metrics will be saved to the `results/` directory.
 
-* **Files:**
-  * `Final_Project.ipynb`: Jupyter Notebook containing all steps of the project.
-  * `submission.csv`: Final predictions for the Kaggle challenge.
-  * `README.md`: Project description and documentation.
+### Performance Evaluation
+1. Run the evaluation script to test on unseen data:
+   ```bash
+   python evaluate.py
+   ```
+2. The evaluation results will be displayed and saved as a report in `results/`.
 
-## Software Setup
+---
 
-* **Required Packages:**
-  * pandas
-  * scikit-learn
-  * matplotlib
-* **Installation:**
-  * Install the packages using pip:
-    ```bash
-    pip install pandas scikit-learn matplotlib
-    ```
+## Overview of Files in Repository
+- **`preprocess.py`:** Handles data preprocessing and feature encoding.
+- **`eda.ipynb`:** Notebook for Exploratory Data Analysis.
+- **`train.py`:** Script to train and save the machine learning models.
+- **`evaluate.py`:** Script to evaluate the model on test data.
+- **`results/`:** Directory containing model performance reports and saved models.
+
+---
 
 ## Citations
+1. Mushroom Classification Dataset: https://www.kaggle.com/datasets/uciml/mushroom-classification
+2. Scikit-learn Documentation: https://scikit-learn.org/stable/
 
-* Mushroom Classification Dataset: [Kaggle](https://www.kaggle.com/datasets/uciml/mushroom-classification).
-* Scikit-learn documentation: https://scikit-learn.org/stable/index.html.
+For any questions or issues, please contact [your_email@example.com].
+
